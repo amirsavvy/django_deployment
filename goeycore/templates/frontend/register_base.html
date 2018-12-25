@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Web/Mobile Design Development and Digital Marketing Agency"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" rel="stylesheet">
+    <link href="{% static "frontend/assets/css/aos.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/css/ekko-lightbox.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/styles/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/styles/main.css" %}" rel="stylesheet">
+  </head>
+  <body id="top">
+    <header class="bg_register">
+      <div class="container pt-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-0">
+          <a class="text-white navbar-brand" href="{% url 'index' %}">
+          <img src="{% static "frontend/assets/images/logo.png" %}" width="230"/>
+        </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#da-navbarNav" aria-controls="da-navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse text-uppercase" id="da-navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#">Who We Are</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#services">Web Design</a></li>
+              <!-- <li class="nav-item"><a class="nav-link smooth-scroll" href="#projects">Web Development</a></li> -->
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">SEO</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">Digital Marketing</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll nav_contact" href="#contact">Request a Free Quote</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="da-home-page-text" data-aos="fade-right" data-aos-duration="1000">
+        <div class="container">
+          <div class="col-md-10 col-sm-12 px-0 mx-0">
+            <!-- <h2 class="display-3" style="margin-left:-6px;">{{home_banner_image_heading_db_data.title}}</h2>
+            <h3 class="h5 mt-3">{{home_banner_image_heading_db_data.details}}</h3><a class="smooth-scroll btn btn-outline-light mt-4 nav_contact" href="#learn">Get My Free Web Design Quote</a> -->
+          </div>
+        </div>
+      </div>
+    </header>
+<div class="page-content">
+{% block content %}{% endblock %}
+</div>
+<footer class="bg-secondary da-section">
+  <div class="container text-white">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="h4">Work With Us</div>
+        <p><a href="{% url 'get_signup' %}" title="Work With Us" style="color:#fff !important;">Sign Up</a></p>
+        <hr>
+        <div class="h4">Hello!</div>
+        <p class="mb-0">hello@goey.co</p>
+        <p>+92 324-8428679</p>
+      </div>
+      <div class="col-md-4">
+        <div class="h6 pb-2">Love us as we love you!</div>
+        <ul>
+          {% for social_network in social_networks_db_data %}
+          <li><a class="da-social-link" href="#" target="_blank">{{ social_network.name}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <div class="h6 pb-2">Copyright</div>
+        <p>&copy; 2018-2019 GOEY.CO. All rights reserved.</p>
+        <!-- <p>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p> -->
+      </div>
+    </div>
+  </div>
+</footer>
+    <div id="scrolltop">
+      <button class="btn btn-primary"><span class="icon"><i class="fas fa-angle-up fa-2x"></i></span></button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'frontend/assets/js/aos.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/ekko-lightbox.min.js' %}"></script>
+    <script src="{% static 'frontend/assets/scripts/main.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'frontend/register_base.html' %}
+{% block title %}
+User Registeration
+{% endblock %}
+{% block content %}
+
+<div class="row" style="background-color: #1f9784 !important">
+    <div class="container">
+      <div class="card py-4 px-4">
+        <div class="h4 pb-4">User Registeration</div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 mb-3">
+            <p>Be a part of Los Angles Top Web Design Agency</p>
+            <div class="da-contact-message">
+              <form action="{% url 'goeymvcapp:post_register' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ user_profile_form.as_p }}
+
+                <!-- <div class="row">
+
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="mr-3 form-control" type="text" name="first_name" placeholder="*First Name" required="required"/>
+                  </div>
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="form-control" type="text" name="last_name" placeholder="Last Name"/>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="mr-3 form-control" type="email" name="email" placeholder="*Email" required="required"/>
+                  </div>
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="form-control" type="text" name="phone" placeholder="*Phone" required="required"/>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="mr-3 form-control" type="password" name="password" placeholder="*Password" required="required"/>
+                  </div>
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="form-control" type="password" name="vpassword" placeholder="*Confirm Password" required="required"/>
+                  </div>
+                </div> -->
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                    <a class="btn btn-primary"  href="{% url 'goeymvcapp:get_login' %}">Login</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div>
+{% endblock %}

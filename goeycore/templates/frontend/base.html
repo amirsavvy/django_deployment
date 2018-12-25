@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="Web/Mobile Design Development and Digital Marketing Agency"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" rel="stylesheet">
+    <link href="{% static "frontend/assets/css/aos.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/css/ekko-lightbox.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/styles/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "frontend/assets/styles/main.css" %}" rel="stylesheet">
+  </head>
+  <body id="top">
+    <header>
+      <div class="container pt-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-0">
+          <a class="text-white navbar-brand" href="{% url 'index' %}">
+          <img src="{% static "frontend/assets/images/logo.png" %}" width="230"/>
+        </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#da-navbarNav" aria-controls="da-navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse text-uppercase" id="da-navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#">Who We Are</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#services">Web Design</a></li>
+              <!-- <li class="nav-item"><a class="nav-link smooth-scroll" href="#projects">Web Development</a></li> -->
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">SEO</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">Digital Marketing</a></li>
+              <li class="nav-item"><a class="nav-link smooth-scroll nav_contact" href="#contact">Request a Free Quote</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="da-home-page-text" data-aos="fade-right" data-aos-duration="1000">
+        <div class="container">
+          <div class="col-md-10 col-sm-12 px-0 mx-0">
+            <h2 class="display-3" style="margin-left:-6px;">{{home_banner_image_heading_db_data.title}}</h2>
+            <h3 class="h5 mt-3">{{home_banner_image_heading_db_data.details}}</h3><a class="smooth-scroll btn btn-outline-light mt-4 nav_contact" href="#learn">Get My Free Web Design Quote</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="page-content">
+      <div>
+<div class="da-section da-work bg-secondary" id="learn">
+  <div class="container">
+    <div class="h3 pb-3 text-center text-white" data-aos="fade-up">{{why_work_with_us_home_db_data.title}}</div>
+    <p class="px-5 pb-5 text-center text-white" data-aos="fade-up">{{why_work_with_us_home_db_data.details}}</p>
+    <div class="row">
+      {% for service in service_db_data %}
+      <div class="col-md-4">
+        <div class="card mb-3" data-aos="flip-left">
+          <div class="card-body mt-4 mb-1 text-center">
+            {% if service.name == "Graphic Design"  %}
+            <i class="pb-3 fab {{service.font_awesome_class}} fa-3x"></i>
+            {% elif service.name == "WordPress Websites"  %}
+            <i class="pb-3 fab {{service.font_awesome_class}} fa-3x"></i>
+            {% else %}
+            <i class="pb-3 fas {{service.font_awesome_class}} fa-3x"></i>
+            {% endif %}
+            <div class="h4 pb-3">{{service.name}}</div>
+            <p>{{service.details}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% block content %}{% endblock %}
+
+
+<div class="da-projects" id="projects">
+  <div class="row mx-0">
+    <div class="col-md-6 px-0 da-project-1" style="background-image: url('{% static 'frontend/assets/images/da-img-2.jpg' %}');" data-aos="zoom-in"></div>
+    <div class="col-md-6 pl-5 pt-5 pb-3">
+      <div class="row">
+        <div class="col-12">
+          <div class="h4">{{home_about_db_data.title}}</div>
+          <p>{{home_about_db_data.details}}</p>
+
+          </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="da-section bg-secondary text-white">
+  <div class="container">
+    <div class="row px-4">
+      {% for company_stats in company_stats_db_data %}
+      <div class="col-md-3 col-sm-6">
+        <div class="media py-2" data-aos="flip-up">
+          <i style="color:#fff !important;" class="mr-3 fas {{company_stats.font_awesome_class}}  fa-3x fa-fw"></i>
+          <div class="media-body">
+            <div class="h5">{{company_stats.number_stat}}</div>
+            <div class="h6">{{company_stats.name}}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="da-expertise">
+  <div class="row mx-0">
+    <div class="col-md-6 da-exp-skills">
+      <div class="container text-uppercase">
+        <h3 class="h5 mb-5">Our Expertise</h3>
+        {% for company_skills in company_skills_db_data %}
+        <div class="col px-0 mb-4">
+          <p>{{company_skills.name}} {{company_skills.number_stat}}%</p>
+          <div class="progress" style="height: 5px;">
+            <div class="progress-bar" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" style="width: {{ company_skills.number_stat }}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6 px-0 da-exp-image" style="background-image: url('{% static 'frontend/assets/images/da-img-6.jpg' %}');" data-aos="zoom-in"></div>
+
+  </div>
+</div>
+
+
+<div class="container da-gallery" id="gallery">
+  <div class="h3 pb-5 text-center" data-aos="fade-up">Our Recent Work </div>
+  <div class="card-columns">
+    {% for gallery in gallery_db_data%}
+    <div class="card"><a href="{{ gallery.image.url }}" data-toggle="lightbox" data-gallery="da-gallery"><img class="img-fluid" src="{{ gallery.image.url }}" alt="{{ gallery.title }}"/></a></div>
+    {% endfor %}
+  </div>
+</div>
+<div class="da-section">
+  <div class="container da-company-brand py-5">
+    <div class="h3 pb-3 text-uppercase text-center" data-aos="fade-up">We Are Certified at World Top Giants</div>
+    <!-- <p class="pb-3 text-center" data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipiscing elit primis rutrum, <br/>nullam tempor malesuada laoreet tempus</p> -->
+    <div class="row">
+      {% for certificate in certificate_db_data %}
+      <div class="col-md-3 text-center"><img class="img-fluid" src="{{ certificate.image.url }}" alt="{{certificate.name}}"/></div>
+      <!-- <div class="col-md-3 text-center"><img class="img-fluid" src="{% static 'frontend/assets/images/company-2.jpg' %}" alt="Company Image 2"/></div>
+      <div class="col-md-3 text-center"><img class="img-fluid" src="{% static 'frontend/assets/images/company-3.jpg' %}" alt="Company Image 3"/></div>
+      <div class="col-md-3 text-center"><img class="img-fluid" src="{% static 'frontend/assets/images/company-4.jpg' %}" alt="Company Image 4"/></div> -->
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="da-section da-brand bg-secondary">
+  <div class="container text-center text-white">
+    <div class="carousel slide pb-5" id="da-brand-carouselIndicator" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li class="active" data-target="#da-brand-carouselIndicator" data-slide-to="0"></li>
+        <li data-target="#da-brand-carouselIndicator" data-slide-to="1"></li>
+        <li data-target="#da-brand-carouselIndicator" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        {% for testimonial in testimonial_db_data %}
+
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <p>"{{testimonial.details}}"</p>
+              <div class="h6 text-uppercase">{{testimonial.client_name}}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="da-contact" id="contact">
+  <div class="da-contact-detail" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="container">
+      <div class="card py-4 px-4">
+        <div class="h4 pb-4">Contact Us</div>
+        <div class="row">
+          <div class="col-md-7 col-sm-12 mb-3">
+            <!-- {{ form.errors }}
+            {{ form.non_field_errors }} -->
+            <div class="da-contact-message">
+              <form action="/send-email-form/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- {{ form.as_p }} -->
+
+                <div class="row">
+                  <div class="col-md-12">
+                  <p>Get your free 30 minute strategy session with an experienced manager valued at  $100.</p>
+                  </div>
+                  </div>
+                <div class="row">
+
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="mr-3 form-control" type="text" name="first_name" placeholder="*First Name" required="required"/>
+                  </div>
+                  <div class="col-md-6 col-sm-12 mb-3">
+                    <input class="form-control" type="text" name="last_name" placeholder="Last Name"/>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <input class="form-control" type="text" name="phone" placeholder="*Phone" required="required"/>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <input class="form-control" type="email" name="email" placeholder="*E-mail" required="required"/>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <textarea class="form-control" name="text_message" placeholder="*Your Message" rows="4" required="required"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">Get Free Consulation</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-5">
+            {% for contact in contact_db_data %}
+            <p><b>{{ contact.contact_name}} Address:</b> {{ contact.address}}</p>
+            <p><b>Phone:</b>  {{ contact.phone}}</p>
+            <p><b>Email:</b> {{ contact.email}}</p>
+            <hr>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+    </div>
+    <footer class="bg-secondary da-section">
+      <div class="container text-white">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="h4">Work With Us</div>
+            <p><a href="{% url 'admin:index' %}" title="Work With Us" style="color:#fff !important;">Administration Login</a></p>
+            <p><a href="{% url 'get_signup' %}" title="Work With Us" style="color:#fff !important;">Register as Partner</a></p>
+            <p><a href="{% url 'goeymvcapp:get_register' %}" title="Work With Us" style="color:#fff !important;">Register as User</a></p>
+
+            {% if user.is_authenticated %}
+            <p><a href="{% url 'logout' %}" title="" style="color:#fff !important;">User Logout</a></p>
+            {% else %}
+            <p><a href="{% url 'goeymvcapp:get_login' %}" title="Login as User" style="color:#fff !important;">User Login</a></p>
+            {% endif %}
+            <hr>
+            <div class="h4">Hello!</div>
+            <p class="mb-0">hello@novatech.co</p>
+            <p>+92 324-8428679</p>
+          </div>
+          <div class="col-md-4">
+            <div class="h6 pb-2">Love us as we love you!</div>
+            <ul>
+              {% for social_network in social_networks_db_data %}
+              <li><a class="da-social-link" href="#" target="_blank">{{ social_network.name}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="h6 pb-2">Copyright</div>
+            <p>&copy; 2018-2019 NOVATECH.CO. All rights reserved.</p>
+            <!-- <p>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p> -->
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div id="scrolltop">
+      <button class="btn btn-primary"><span class="icon"><i class="fas fa-angle-up fa-2x"></i></span></button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'frontend/assets/js/aos.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/ekko-lightbox.min.js' %}"></script>
+    <script src="{% static 'frontend/assets/scripts/main.js' %}"></script>
+  </body>
+</html>
